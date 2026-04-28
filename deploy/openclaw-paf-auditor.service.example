@@ -1,0 +1,16 @@
+[Unit]
+Description=SalamanderBot PAF Auditor Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/openclaw-paf-auditor
+Environment=NODE_ENV=production
+EnvironmentFile=/opt/openclaw-paf-auditor/.env
+ExecStart=/usr/bin/node /opt/openclaw-paf-auditor/dist/index.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

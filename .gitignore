@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+data/sessions.json
+
+# Local secrets and OAuth artifacts
+token.json
+oauth-client.json
+.tmp-google-oauth/
+
+# Private local workspaces and notes
+.claude/
+CLAUDE.md
+workspace/
+server-workspace/
+audit-workspace/
+
+# Common local/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
