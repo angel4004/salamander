@@ -7,6 +7,11 @@ const execFileAsync = promisify(execFile);
 
 type OpenClawThinking = "off" | "minimal" | "low" | "medium" | "high" | "xhigh";
 
+interface OpenClawExecFileInvocation {
+  command: string;
+  args: string[];
+}
+
 interface OpenClawAgentPayload {
   text?: string | null;
 }
@@ -62,11 +67,15 @@ export interface OpenClawAgentRunResult {
 export async function runOpenClawAgent(
   options: OpenClawAgentRunOptions
 ): Promise<OpenClawAgentRunResult> {
+  const invocation = buildOpenClawExecFileInvocation(
+    options.cliPath,
+    buildOpenClawAgentArgs(options)
+  );
   const response = parseOpenClawAgentResponse(
     (
       await execFileAsync(
-        options.cliPath,
-        buildOpenClawAgentArgs(options),
+        invocation.command,
+        invocation.args,
         {
           maxBuffer: 20 * 1024 * 1024,
           timeout: options.timeoutSeconds * 1000
@@ -114,6 +123,24 @@ export function buildOpenClawAgentArgs(options: OpenClawAgentRunOptions): string
   }
 
   return args;
+}
+
+export function buildOpenClawExecFileInvocation(
+  cliPath: string,
+  args: string[],
+  nodePath = process.execPath
+): OpenClawExecFileInvocation {
+  if (/\.(?:cjs|js|mjs)$/iu.test(cliPath)) {
+    return {
+      command: nodePath,
+      args: [cliPath, ...args]
+    };
+  }
+
+  return {
+    command: cliPath,
+    args
+  };
 }
 
 export function parseOpenClawAgentResponse(rawText: string): OpenClawAgentResponse {

@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   buildOpenClawAgentArgs,
+  buildOpenClawExecFileInvocation,
   parseOpenClawAgentResponse,
   toOpenClawThinking
 } from "./openclawGateway.js";
@@ -31,6 +32,19 @@ test("buildOpenClawAgentArgs maps reasoning effort and preserves explicit sessio
     "off"
   ]);
   assert.equal(toOpenClawThinking("high"), "high");
+});
+
+test("buildOpenClawExecFileInvocation runs JS CLI files through node", () => {
+  const invocation = buildOpenClawExecFileInvocation(
+    "node_modules/openclaw/openclaw.mjs",
+    ["agent", "--json"],
+    "C:\\Program Files\\nodejs\\node.exe"
+  );
+
+  assert.deepEqual(invocation, {
+    command: "C:\\Program Files\\nodejs\\node.exe",
+    args: ["node_modules/openclaw/openclaw.mjs", "agent", "--json"]
+  });
 });
 
 test("parseOpenClawAgentResponse accepts successful CLI json payloads", () => {

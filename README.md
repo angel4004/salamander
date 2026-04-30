@@ -81,6 +81,8 @@ OPENCLAW_TIMEOUT_SECONDS=600
 
 `CPO_AUTO_UPDATE=true` заставляет runtime перед каждым запросом обновлять локальный CPO checkout через `git fetch` и `git pull --ff-only`. Если fast-forward невозможен, OpenClaw сообщает, что audit может идти по stale source.
 
+`OPENCLAW_CLI_PATH` по умолчанию использует `openclaw` из `PATH`. Для локального или vendored CLI можно указать явный путь, например `/usr/bin/openclaw` или `./tools/openclaw/openclaw.mjs`; `.js`, `.mjs` и `.cjs` файлы runtime запускает через текущий Node.js.
+
 ## Audit Scope
 
 SalamanderBot должен отвечать на пять вопросов:
