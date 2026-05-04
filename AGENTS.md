@@ -18,7 +18,7 @@
   - Git remote: `https://github.com/angel4004/Salamander.git`
 - `../cpo-protocol-lab` — protocol harness.
   - Local path: `C:\Users\ilya.suvorov\Projects\Work\cpo-quality-ecosystem\cpo-protocol-lab`
-  - Git remote: not configured yet; currently local-only.
+  - Git remote: `https://github.com/angel4004/cpo-protocol-lab.git`
 
 Граница ответственности:
 
