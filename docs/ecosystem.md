@@ -25,6 +25,8 @@ They are complementary quality layers around the same CPO Copilot domain, not ru
 | `Salamander` | Did the PAF methodology survive translation into the CPO Copilot working package? | PAF reference layer, CPO Copilot method/setup/use files | Findings about lost, distorted, underpacked, unused or invented-strictness elements |
 | `cpo-protocol-lab` | Does the copilot follow the onboarding protocol in a dialogue? | CPO source bundle, scenario, fixture passport, deterministic contract | `pass`, `hard_fail`, `warning`, `needs_review`, transcript and report |
 
+Salamander's pre-merge artifact contract is documented in [methodology-audit-artifacts.md](methodology-audit-artifacts.md). Root quality-gate tooling consumes the JSON report path via `-MethodologyReportPath`.
+
 ## When to use which
 
 Use `Salamander` when checking whether methodology from PAF is correctly represented in the CPO Copilot working package, especially after changing PAF reference material, method files, launch/use/setup files, or product decision guardrails.

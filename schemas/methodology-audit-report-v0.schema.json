@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://angel4004.github.io/salamander/schemas/methodology-audit-report-v0.schema.json",
+  "title": "Salamander Methodology Audit Report v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "reason",
+    "artifactPath",
+    "verdict",
+    "blockingFindings",
+    "schemaVersion",
+    "run",
+    "source_snapshot",
+    "checked_files",
+    "findings",
+    "non_findings",
+    "tool_status",
+    "limitations",
+    "recommended_human_review"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "provided",
+        "tool_error",
+        "incomplete",
+        "skipped_with_waiver",
+        "not_required",
+        "missing_required"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "artifactPath": {
+      "type": "string"
+    },
+    "verdict": {
+      "enum": [
+        "pass",
+        "hard_fail",
+        "warning",
+        "needs_review",
+        "unknown"
+      ]
+    },
+    "blockingFindings": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "schemaVersion": {
+      "const": "salamander-methodology-audit-report-v0"
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "mode",
+        "generated_at",
+        "generated_by"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "mode": {
+          "const": "offline_pre_merge"
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "generated_by": {
+          "const": "salamander-offline-audit-runner"
+        }
+      }
+    },
+    "source_snapshot": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "kind",
+        "snapshot_id",
+        "source"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "snapshot_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "checked_files": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/checkedFile"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "non_findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonFinding"
+      }
+    },
+    "tool_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "ok",
+            "schema_mismatch",
+            "tool_error",
+            "incomplete"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_human_review": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "checkedFile": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "path",
+        "role"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "locator": {
+          "type": "string"
+        },
+        "excerpt": {
+          "type": "string"
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "taxonomy",
+        "severity",
+        "title",
+        "summary",
+        "evidence",
+        "recommendation",
+        "confidence",
+        "blocking"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "taxonomy": {
+          "enum": [
+            "lost",
+            "distorted",
+            "underpacked",
+            "unused",
+            "invented_strictness",
+            "local_adaptation_candidate",
+            "uncertain"
+          ]
+        },
+        "priority": {
+          "enum": [
+            "P1",
+            "P2",
+            "P3"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "hard_fail",
+            "warning",
+            "needs_review"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "blocking": {
+          "type": "boolean"
+        }
+      }
+    },
+    "nonFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "taxonomy",
+        "title",
+        "summary",
+        "evidence",
+        "confidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "taxonomy": {
+          "const": "acceptable_compression"
+        },
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      }
+    }
+  }
+}

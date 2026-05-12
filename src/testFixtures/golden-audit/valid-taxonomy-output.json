@@ -1,0 +1,157 @@
+{
+  "checked_files": [
+    {
+      "path": "runtime/core/canon_paf_knowledge_layer.md",
+      "role": "reference",
+      "digest": "sha256:reference-fixture"
+    },
+    {
+      "path": "runtime/project_setup/cpo_copilot_setup.md",
+      "role": "working_package",
+      "digest": "sha256:working-fixture"
+    }
+  ],
+  "findings": [
+    {
+      "id": "lost-001",
+      "taxonomy": "lost",
+      "severity": "hard_fail",
+      "title": "Reference decision gate is absent from working package",
+      "summary": "A required PAF decision gate is not represented in the working package.",
+      "evidence": [
+        {
+          "file": "runtime/core/canon_paf_knowledge_layer.md",
+          "locator": "fixture-reference-lost",
+          "excerpt": "Sanitized reference excerpt."
+        }
+      ],
+      "recommendation": "Restore the missing gate or document why the working package intentionally excludes it.",
+      "confidence": "high",
+      "blocking": true
+    },
+    {
+      "id": "distorted-001",
+      "taxonomy": "distorted",
+      "severity": "warning",
+      "title": "Reference criterion is materially reworded",
+      "summary": "The working package changes the meaning of a reference criterion.",
+      "evidence": [
+        {
+          "file": "runtime/project_setup/cpo_copilot_setup.md",
+          "locator": "fixture-working-distorted",
+          "excerpt": "Sanitized working excerpt."
+        }
+      ],
+      "recommendation": "Align wording with the reference criterion.",
+      "confidence": "medium",
+      "blocking": false
+    },
+    {
+      "id": "underpacked-001",
+      "taxonomy": "underpacked",
+      "severity": "warning",
+      "title": "Reference workflow is too implicit",
+      "summary": "The working package mentions the workflow but does not package it into actionable operator steps.",
+      "evidence": [
+        {
+          "file": "runtime/project_setup/cpo_copilot_setup.md",
+          "locator": "fixture-working-underpacked",
+          "excerpt": "Sanitized working excerpt."
+        }
+      ],
+      "recommendation": "Add explicit steps or acceptance criteria.",
+      "confidence": "medium",
+      "blocking": false
+    },
+    {
+      "id": "unused-001",
+      "taxonomy": "unused",
+      "severity": "needs_review",
+      "title": "Packaged method has no observed activation path",
+      "summary": "A method exists in the working package but no setup or runtime instruction appears to call it.",
+      "evidence": [
+        {
+          "file": "runtime/project_setup/cpo_copilot_setup.md",
+          "locator": "fixture-working-unused",
+          "excerpt": "Sanitized working excerpt."
+        }
+      ],
+      "recommendation": "Confirm whether this method is intentionally dormant.",
+      "confidence": "low",
+      "blocking": false
+    },
+    {
+      "id": "invented-001",
+      "taxonomy": "invented_strictness",
+      "severity": "warning",
+      "title": "Working package adds a stricter rule than reference",
+      "summary": "A strict requirement appears without a matching PAF source.",
+      "evidence": [
+        {
+          "file": "runtime/project_setup/cpo_copilot_setup.md",
+          "locator": "fixture-working-invented",
+          "excerpt": "Sanitized working excerpt."
+        }
+      ],
+      "recommendation": "Either cite the source or relax the strict requirement.",
+      "confidence": "medium",
+      "blocking": false
+    },
+    {
+      "id": "adaptation-001",
+      "taxonomy": "local_adaptation_candidate",
+      "severity": "needs_review",
+      "title": "Local adaptation may be valid but needs owner judgment",
+      "summary": "The working package adapts a reference idea for the CPO context.",
+      "evidence": [
+        {
+          "file": "runtime/project_setup/cpo_copilot_setup.md",
+          "locator": "fixture-working-adaptation",
+          "excerpt": "Sanitized working excerpt."
+        }
+      ],
+      "recommendation": "Ask the methodology owner whether this adaptation is intended.",
+      "confidence": "medium",
+      "blocking": false
+    },
+    {
+      "id": "uncertain-001",
+      "taxonomy": "uncertain",
+      "severity": "needs_review",
+      "title": "Evidence is insufficient for automated classification",
+      "summary": "The model cannot distinguish missing context from a real methodology issue.",
+      "evidence": [
+        {
+          "file": "runtime/core/canon_paf_knowledge_layer.md",
+          "locator": "fixture-reference-uncertain",
+          "excerpt": "Sanitized reference excerpt."
+        }
+      ],
+      "recommendation": "Keep as human-review input, not a blocking automated signal.",
+      "confidence": "low",
+      "blocking": false
+    }
+  ],
+  "non_findings": [
+    {
+      "id": "compression-001",
+      "taxonomy": "acceptable_compression",
+      "title": "Reference checklist is compressed without meaning loss",
+      "summary": "The working package compresses a checklist while preserving the decision logic.",
+      "evidence": [
+        {
+          "file": "runtime/project_setup/cpo_copilot_setup.md",
+          "locator": "fixture-working-compression",
+          "excerpt": "Sanitized working excerpt."
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "limitations": [
+    "Golden fixture uses sanitized excerpts only."
+  ],
+  "recommended_human_review": [
+    "Review the blocking lost-methodology signal before merge."
+  ]
+}

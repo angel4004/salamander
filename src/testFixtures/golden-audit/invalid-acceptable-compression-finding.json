@@ -1,0 +1,24 @@
+{
+  "checked_files": [
+    {
+      "path": "runtime/core/canon_paf_knowledge_layer.md",
+      "role": "reference"
+    }
+  ],
+  "findings": [
+    {
+      "id": "compression-as-finding-001",
+      "taxonomy": "acceptable_compression",
+      "severity": "warning",
+      "title": "This should not be a finding",
+      "summary": "Acceptable compression is evidence of no methodology defect.",
+      "evidence": [],
+      "recommendation": "Move this item to non_findings.",
+      "confidence": "high",
+      "blocking": false
+    }
+  ],
+  "non_findings": [],
+  "limitations": [],
+  "recommended_human_review": []
+}

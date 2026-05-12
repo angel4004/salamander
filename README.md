@@ -23,6 +23,8 @@ SalamanderBot сравнивает:
 
 Эти проекты дополняют друг друга, но не являются runtime-зависимостями друг друга. Подробнее: [docs/ecosystem.md](docs/ecosystem.md).
 
+Для pre-merge quality loop Salamander также умеет выпускать offline methodology audit artifacts: JSON/Markdown report по подготовленному model output и pinned source snapshot без Telegram runtime и live provider calls. Контракт и root handoff описаны в [docs/methodology-audit-artifacts.md](docs/methodology-audit-artifacts.md).
+
 ## Quick Start
 
 1. Скопируй `.env.example` в `.env`.

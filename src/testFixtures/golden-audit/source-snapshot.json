@@ -1,0 +1,14 @@
+{
+  "kind": "pinned_fixture",
+  "snapshot_id": "cpo-sanitized-snapshot-001",
+  "source": "sanitized local fixture",
+  "git": {
+    "repository": "angel4004/cpo",
+    "branch": "feature/methodology-audit",
+    "commit": "abc1234"
+  },
+  "captured_at": "2026-05-12T12:00:00.000Z",
+  "notes": [
+    "Fixture contains sanitized file names and excerpt identifiers only."
+  ]
+}
